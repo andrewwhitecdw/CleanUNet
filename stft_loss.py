@@ -115,9 +115,9 @@ class STFTLoss(torch.nn.Module):
         y_mag = stft(y, self.fft_size, self.shift_size, self.win_length, self.window)
 
         if self.band == "high":
-            freq_mask_ind = x_mag.shape[1] // 2  # only select high frequency bands
-            sc_loss  = self.spectral_convergence_loss(x_mag[:,freq_mask_ind:,:], y_mag[:,freq_mask_ind:,:])
-            mag_loss = self.log_stft_magnitude_loss(x_mag[:,freq_mask_ind:,:], y_mag[:,freq_mask_ind:,:])
+            freq_mask_ind = x_mag.shape[-1] // 2  # only select high frequency bands
+            sc_loss  = self.spectral_convergence_loss(x_mag[...,freq_mask_ind:], y_mag[...,freq_mask_ind:])
+            mag_loss = self.log_stft_magnitude_loss(x_mag[...,freq_mask_ind:], y_mag[...,freq_mask_ind:])
         elif self.band == "full":
             sc_loss  = self.spectral_convergence_loss(x_mag, y_mag)
             mag_loss = self.log_stft_magnitude_loss(x_mag, y_mag) 

@@ -27,7 +27,7 @@ def evaluate_dns(testset_path, enhanced_path, target):
                 rate, target_wav = wavfile.read(os.path.join(testset_path, "noisy", "noisy_fileid_{}.wav".format(i)))
             else:
                 rate, target_wav = wavfile.read(os.path.join(enhanced_path, "enhanced_fileid_{}.wav".format(i)))
-        except:
+        except Exception:
             continue
 
         length = target_wav.shape[-1]

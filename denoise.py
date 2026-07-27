@@ -149,9 +149,8 @@ if __name__ == "__main__":
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
 
-    if args.subset == "testing":
-        denoise(gen_config["output_directory"],
-                subset=args.subset,
-                ckpt_iter=args.ckpt_iter,
-                dump=True)
+    denoise(gen_config["output_directory"],
+            subset=args.subset,
+            ckpt_iter=args.ckpt_iter,
+            dump=True)
     

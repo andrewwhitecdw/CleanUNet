@@ -28,17 +28,16 @@ class CleanNoisyPairDataset(Dataset):
     """
     
     def __init__(self, root='./', subset='training', crop_length_sec=0):
-        super(CleanNoisyPairDataset).__init__()
+        super(CleanNoisyPairDataset, self).__init__()
 
         assert subset is None or subset in ["training", "testing"]
         self.crop_length_sec = crop_length_sec
         self.subset = subset
 
-        N_clean = len(os.listdir(os.path.join(root, 'training_set/clean')))
-        N_noisy = len(os.listdir(os.path.join(root, 'training_set/noisy')))
-        assert N_clean == N_noisy
-
         if subset == "training":
+            N_clean = len(os.listdir(os.path.join(root, 'training_set/clean')))
+            N_noisy = len(os.listdir(os.path.join(root, 'training_set/noisy')))
+            assert N_clean == N_noisy
             self.files = [(os.path.join(root, 'training_set/clean', 'fileid_{}.wav'.format(i)),
                            os.path.join(root, 'training_set/noisy', 'fileid_{}.wav'.format(i))) for i in range(N_clean)]
         

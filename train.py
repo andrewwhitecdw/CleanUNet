@@ -115,7 +115,7 @@ def train(num_gpus, rank, group_name,
             time0 -= checkpoint['training_time_seconds']
             print('Model at iteration %s has been trained for %s seconds' % (ckpt_iter, checkpoint['training_time_seconds']))
             print('checkpoint model loaded successfully')
-        except:
+        except Exception:
             ckpt_iter = -1
             print('No valid checkpoint model found, start training from initialization.')
     else:

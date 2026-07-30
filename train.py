@@ -38,10 +38,6 @@ import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 
 import random
-random.seed(0)
-torch.manual_seed(0)
-np.random.seed(0)
-
 
 from distributed import init_distributed, apply_gradient_allreduce, reduce_tensor
 
@@ -231,4 +227,7 @@ if __name__ == "__main__":
 
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
+    random.seed(0)
+    torch.manual_seed(0)
+    np.random.seed(0)
     train(num_gpus, args.rank, args.group_name, **train_config)

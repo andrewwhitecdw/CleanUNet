@@ -19,3 +19,4 @@ def test_seed_calls_not_at_module_level():
             name = call.func.id
         assert name not in ('seed', 'manual_seed'), (
             f"Seed call {name} found at module level"
+        )
